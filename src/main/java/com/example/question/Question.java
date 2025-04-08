@@ -1,7 +1,8 @@
-package com.example.website;
+package com.example.question;
 
 import java.util.List;
 
+import com.example.answer.Answer;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
