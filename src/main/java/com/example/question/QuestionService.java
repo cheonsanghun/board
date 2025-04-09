@@ -1,8 +1,10 @@
 package com.example.question;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.answer.AnswerDto;
+import com.example.website.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +34,13 @@ public class QuestionService {
                                 )).toList()
                 )).toList();
     }
-
+    public Question getQuestionId(Integer id) {
+        Optional<Question> question = this.questionRepository.findById(id);
+        if (question.isPresent()) {
+            return question.get();
+        } else {
+            throw new DataNotFoundException("question not found");
+        }
+    }
 
 }
