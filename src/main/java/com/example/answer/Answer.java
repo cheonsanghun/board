@@ -27,5 +27,6 @@ public class Answer {
     private LocalDateTime createDate;
 
     @ManyToOne//다른 클래스를 사용하기 위한 엔티티
+    //질문 하나에 답변이 여러개인데 이를 매칭하기 위한 엔티티 n대1 매칭방법
     private Question question;
 }

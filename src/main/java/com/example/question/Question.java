@@ -33,6 +33,9 @@ public class Question {
     private LocalDateTime createDate;
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE)
+    //1대다로 데이터베이스에서 자료를 매칭할 때 하나의 Question이 여러 개의 Answer를 가진다.
+    //이때, mappedBy = "question"은 반대쪽인 Answer에 있는 question 필드를 기준으로 연결된다는 뜻
+    //cascade = CascadeType.REMOVE는 질문이 삭제 될 시 answer의 값또한 같이 삭제 된다는 뜻
     private List<Answer> answerList;
 
 

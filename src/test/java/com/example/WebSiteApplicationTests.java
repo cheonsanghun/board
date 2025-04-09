@@ -1,14 +1,16 @@
-package com.example.website;
+package com.example;
 
 import com.example.question.Question;
 import com.example.question.QuestionRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
+//@EnableJpaRepositories(basePackages = "com.example.question") // ★ 이거 추가!
 class WebSiteApplicationTests {
 
 	@Autowired
@@ -35,7 +37,7 @@ class WebSiteApplicationTests {
 		Question q = all.get(0);
 		assertEquals("sbb가 무엇인가요?", q.getSubject());
 
-		Optional<Question> oq = this.questionRepository.findById(1);
+		Optional<Question> oq = this.questionRepository.findById(1); Optional로 하는 이유는 값이 존재하는지 확인하기 위해서
 		//questionRepository를 사용하여 데이터베이스에서 id가 1인 질문을 조회
 		if(oq.isPresent()) {
 			Question q = oq.get();
