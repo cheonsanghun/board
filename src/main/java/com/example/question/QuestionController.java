@@ -2,12 +2,8 @@ package com.example.question;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -23,6 +19,7 @@ public class QuestionController {
         model.addAttribute("questionList", questionList);
         return "question_list";
     }
+
     @GetMapping("/detail/{id}")
     public String detail(Model model,@PathVariable Integer id) {
         //@PathVariable URL 경로(URI)에 있는 값을 변수로 받아오는 어노테이션
@@ -32,5 +29,16 @@ public class QuestionController {
         //key: "question"
         //value: question 객체 (엔티티 또는 DTO 등)
         return "question_detail";
+    }
+    @GetMapping("/create")
+    public String questionCreate() {
+        return "question_form";
+    }
+    //각 데이터를 확인하기 위해 GetMapping
+    //아래 create는 정보를 받아와 저장해야 하기에 Post
+    @PostMapping("/create")
+    public String questionCreate(@RequestParam(value="subject") String subject, @RequestParam(value="content") String content) {
+        this.questionService.create(subject, content);
+        return "redirect:/question/list";
     }
 }
